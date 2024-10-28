@@ -1,0 +1,75 @@
+<!-- This code snippet is a Django template that extends a base template called "base.html". It loads
+static files and defines a block for the title as "View Snippet". Within the main content block, it
+displays a card with information about a snippet if the snippet exists. The snippet's code, title,
+and language are displayed along with buttons to edit or delete the snippet. If the snippet does not
+exist, it shows an error message. -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}View Snippet{% endblock title %}
+
+{% block main-content %}
+<div
+    class="container-sm col-6 px-5 py-3 "
+>
+<h2>View Snippet</h2>
+ 
+{% if snippet %}
+
+<div class="card "  >
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>
+                <code> {{snippet.code}} </code>
+                
+            </p>
+            <footer class="blockquote-footer">
+                {{snippet.title}}
+                <cite title="Source title"> {{snippet.language}}</cite>
+            </footer>
+        </blockquote>
+        <a class="btn btn-primary" href="{% url "edit_snippet" snippet.id %}"  role="button">Edit</a>
+            
+            
+            <a class="btn btn-danger" href="{% url "delete_snippet" snippet.id %}" role="button" >Delete</a>
+        
+    </div>
+</div>
+
+
+
+
+<div class="card">
+    <h4 class="card-title card-header"> {{snippet.title}}( <small class="text-muted">{{snippet.language}}</small>)</h4>
+     
+    <div class="card-body">
+
+        <blockquote class="blockquote mb-2 border py-1 px-3">
+            <p>
+                <code> {{snippet.code}} </code>
+                
+            </p>
+            
+            
+        </blockquote>
+        
+        
+    </div>
+    <small class="text-muted text-end px-5 card-footer">{{snippet.created_at}}</small>
+    {% comment %} <div class="card-footer text-muted">{{snippet.created_at}}</div> {% endcomment %}
+   <p class="px-3 "> <a class="btn btn-primary mx-2 " href="{% url "edit_snippet" snippet.id %}"  role="button">Edit</a>
+            
+            
+    <a class="btn btn-danger mx-2" href="{% url "delete_snippet" snippet.id %}" role="button" >Delete</a>
+   </p>
+</div>
+
+
+pop
+
+{% else %}
+
+<h3>Error While LOading Snippet </h3>
+{% endif %}
+</div>
+
+{% endblock main-content %}

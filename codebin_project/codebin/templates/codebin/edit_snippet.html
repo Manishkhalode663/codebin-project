@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Edit Snippet{% endblock title %}
+{% block main-content %}
+ 
+<div class="container-sm  px-5 py-3 ">
+    <h2>Edit Snippet</h2>
+     
+    <div class="container-sm  px-5  ">
+        <form method="post">
+            {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="title" class="col-sm-1 col-form-label"> Title</label>
+            <div class="col-sm-5">
+               {{form.title}}
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="code" class="col-sm-1 col-form-label">Code</label>
+            <div class="col-sm-5">
+             {{form.code}}
+            </div>
+          </div>
+          
+          <div class="mb-3 row">
+            <label for="code" class="col-sm-1 col-form-label">Language</label>
+            <div class="col-sm-5">
+             {{form.language}}
+            </div>
+          </div>
+              <button type="submit " class="btn btn-primary">Save Changes</button>
+            </form>
+
+        </div>
+     
+        
+    </form>
+</div>
+    
+    {% endblock main-content %}
+
+
+
